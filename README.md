@@ -1,6 +1,6 @@
-# currencydemo
+# Currency Rate Tracker
 
-A new Flutter project.
+A Flutter project for tracking both crypto and fiat currency rates based on USD.
 
 ## Getting Started
 
