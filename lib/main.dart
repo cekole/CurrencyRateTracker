@@ -1,7 +1,6 @@
 import 'package:currencydemo/currency_item.dart';
 import 'package:currencydemo/providers/currency_provider.dart';
 import 'package:currencydemo/screens/crypto_screen.dart';
-import 'package:currencydemo/screens/fiat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +32,6 @@ class MyApp extends StatelessWidget {
         home: CryptoScreen(),
         routes: {
           CryptoScreen.routeName: (context) => CryptoScreen(),
-          FiatScreen.routeName: (context) => FiatScreen(),
         },
       ),
     );

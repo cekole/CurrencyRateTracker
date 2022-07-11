@@ -1,4 +1,3 @@
-import 'package:currencydemo/screens/fiat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +16,7 @@ class CryptoScreen extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<CryptoScreen> {
+  var _currentIndex = 0;
   var _isInit = true;
   var _isLoading = false;
 
@@ -62,6 +62,7 @@ class _MyHomePageState extends State<CryptoScreen> {
         title: Text('Currencies'),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
         unselectedItemColor: Colors.grey,
         backgroundColor: Color.fromARGB(117, 13, 0, 50),
         selectedItemColor: Color.fromARGB(186, 255, 235, 59),
@@ -75,18 +76,16 @@ class _MyHomePageState extends State<CryptoScreen> {
             icon: Icon(Icons.attach_money_sharp),
           ),
         ],
-        onTap: (value) {
-          if (value == 0) {
-            setState(() {
-              Navigator.of(context)
-                  .pushReplacementNamed(CryptoScreen.routeName);
-            });
-          } else if (value == 1) {
-            setState(() {
-              Navigator.of(context).pushReplacementNamed(FiatScreen.routeName);
-            });
+        onTap: ((value) {
+          _currentIndex = value;
+          if (_currentIndex == 0) {
+            Provider.of<CurrencyProvider>(context, listen: false)
+                .fetchCurrencies();
           }
-        },
+          if (_currentIndex == 1) {
+            Provider.of<CurrencyProvider>(context, listen: false).fetchFIAT();
+          }
+        }),
       ),
       body: _isLoading
           ? Center(
